@@ -22,7 +22,7 @@ function App() {
   return (
     <div className="App">
       {users.map((item, idx) => (
-        <div key={idx}>
+        <div key={idx} >
           <p>{item.title}</p>
           <ul>
           {item.ingredients.map((ingredient, index) => (
@@ -31,7 +31,14 @@ function App() {
             </li>
           ))}
         </ul>
-          <p>{item.instructions}</p>
+          {/* <p>{item.instructions}</p> */}
+          <ul >
+          {item.instructions.map((instruction, index) => (
+            <li key={index} style={{ listStyle: 'none' }}>
+              {instruction}
+            </li>
+          ))}
+        </ul>
         </div>
 
       ))}
