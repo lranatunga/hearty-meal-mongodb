@@ -3,6 +3,7 @@ import Recipe from "../model/Recipe.js"
 export const handleListRecipes = async (req, res) => {
     try{
         const recipes = await Recipe.find()
+        .select("-__v")
         console.log("Recipe list:" , recipes)
         res.send(recipes)
     } catch (error) {
