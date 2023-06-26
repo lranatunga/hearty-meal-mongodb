@@ -16,7 +16,15 @@ export const handleAddRecipe = async (req, res) => {
     console.log('handleAddRecipe:', req.body)
 
     try{
-        const addNewRecipe = await Recipe.create(req.body)
+        const { title, category, ingredients, instructions } = req.body;
+        const image = req.file.filename;
+        const addNewRecipe = await Recipe.create({
+            title,
+            category,
+            ingredients,
+            instructions,
+            image,
+        })
         console.log("New Recipe add:", addNewRecipe)
         res.send('New recipe add to the DB')
     } catch (error) {
@@ -25,22 +33,54 @@ export const handleAddRecipe = async (req, res) => {
     }
 }
 
+// export const handleEditRecipe = async (req, res) => {
+//     console.log("handleEditRecipe:", req.body);
+  
+//     try {
+//       const editedRecipe = await Recipe.findByIdAndUpdate(req.body._id, req.body, {
+//         new: true,
+//       });
+//       console.log("edited recipe:", editedRecipe);
+  
+//       res.send("Recipe edited");
+//     } catch (error) {
+//       console.log("Error editting recipe :", error.message);
+  
+//       res.send("Error in editting recipe" + error.message);
+//     }
+//   };
+
+
 export const handleEditRecipe = async (req, res) => {
-    console.log("handleEditRecipe:", req.body);
-  
     try {
-      const editedRecipe = await Recipe.findByIdAndUpdate(req.body._id, req.body, {
-        new: true,
-      });
-      console.log("edited recipe:", editedRecipe);
+      const { _id, title, category, ingredients, instructions } = req.body;
+      let image = req.body.image;
   
-      res.send("Recipe edited");
+      
+      if (req.file) {
+        image = req.file.filename; 
+      }
+  
+      const updatedRecipe = await Recipe.findByIdAndUpdate(
+        _id,
+        {
+          title,
+          category,
+          ingredients,
+          instructions,
+          image,
+        },
+        { new: true }
+      );
+  
+      console.log("Updated Recipe:", updatedRecipe);
+      res.send("Recipe updated in the DB");
     } catch (error) {
-      console.log("Error editting recipe :", error.message);
-  
-      res.send("Error in editting recipe" + error.message);
+      console.log("Error updating recipe:", error.message);
+      res.send("Error in updating recipe: " + error.message);
     }
   };
+  
 
 
 export const handeleDeleteRecipe = async (req, res) => {

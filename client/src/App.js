@@ -1,8 +1,10 @@
 
 import './App.css';
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import SearchContextFunction from './Context/SearchContext';
 import { useEffect, useState } from "react";
 import axios from "axios";
+import AddNewRecipes from './Pages/AddNewRecipePage';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -20,7 +22,10 @@ function App() {
   }, []);
 
   return (
+    <BrowserRouter>
     <div className="App">
+    <SearchContextFunction>
+      <AddNewRecipes/>
       {users.map((item, idx) => (
         <div key={idx} >
           <p>{item.title}</p>
@@ -42,7 +47,9 @@ function App() {
         </div>
 
       ))}
+    </SearchContextFunction>
     </div>
+    </BrowserRouter>
   );
 }
 
