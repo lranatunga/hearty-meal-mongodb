@@ -56,3 +56,48 @@ export const handeleDeleteRecipe = async (req, res) => {
     }
 
 }
+
+// export const handleSearchRecipes = async (req, res) => {
+//     try {
+//         const text = req.query.text;
+//         console.log("Search text:", text)
+//         if (!text)
+//             return res.send({ success: false, error: "No search text provided" });
+//         const regExp = new RegExp(text, "i");
+
+//         const searchRecipe = await Recipe.find({
+//             text: regExp,
+//         }).select("-__v");
+
+//         res.send({ success: true, searchRecipe });
+//     } catch (error) {
+//         console.log("Search error:", error.message);
+//         res.send({ success: false, error: error.message });
+//     }
+// }
+
+
+
+export const handleSearchRecipes = async (req, res) => {
+    try {
+        const text = req.query.text;
+        console.log("Search text:", text);
+        if (!text) {
+            return res.send({ success: false, error: "No search text provided" });
+        }
+        const regExp = new RegExp(text, "i");
+
+        const searchRecipe = await Recipe.find({
+            $or: [
+                { title: regExp },
+                { ingredients: regExp },
+                { instructions: regExp }
+            ]
+        }).select("-__v");
+
+        res.send({ success: true, searchRecipe });
+    } catch (error) {
+        console.log("Search error:", error.message);
+        res.send({ success: false, error: error.message });
+    }
+};
