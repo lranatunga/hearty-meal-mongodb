@@ -5,6 +5,12 @@ import SearchContextFunction from './Context/SearchContext';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AddNewRecipes from './Pages/AddNewRecipePage';
+import Appetizer from './Category/Appetizer';
+import Dessert from './Category/Dessert';
+import MainRecipes from './Category/MainRecipes';
+import QuickRecipes from './Category/QuickRecipes';
+import SpecialRecipes from './Category/Special';
+import SingleRecipePage from './Pages/SingleRecipePage';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -13,7 +19,7 @@ function App() {
     const fetchData = async () => {
       const data = await axios.get("http://localhost:5001/recipes/list");
       
-      console.log("data:", data);
+      // console.log("data:", data);
 
       setUsers(data.data);
 
@@ -26,6 +32,12 @@ function App() {
     <BrowserRouter>
     <div className="App">
     <SearchContextFunction>
+    <Appetizer/>
+    <Dessert/>
+    <MainRecipes/>
+    <QuickRecipes/>
+    <SpecialRecipes/>
+    <SingleRecipePage/>
       <AddNewRecipes/>
       {users.map((item, idx) => (
         <div key={idx} >

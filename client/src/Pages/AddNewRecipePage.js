@@ -16,46 +16,27 @@ export default function AddNewRecipes ( ) {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
 
-    // const [newRecipe, setNewRecipe] = useState ('')
-    // const [image, setImage] = useState({
-    //     url: noimage,
-    //     file: null,
-    //   });
 
-      const handleImageChange = (e) => {
-        console.log("the file is", e.currentTarget.files[0]);
+  const handleImageChange = (e) => {
+    console.log("the file is", e.currentTarget.files[0]);
     
-        if (!e.currentTarget.files[0]) return;
+  if (!e.currentTarget.files[0]) return;
     
-        if (e.currentTarget.files[0].size > 1000000) {
+  if (e.currentTarget.files[0].size > 1000000) {
           alert("This file is bigger than 10kB");
           return;
         }
-        setImage({
-          url: URL.createObjectURL(e.currentTarget.files[0]),
-          file: e.currentTarget.files[0],
+    setImage({
+            url: URL.createObjectURL(e.currentTarget.files[0]),
+            file: e.currentTarget.files[0],
         });
       };
 
-      const handleAddIngredient = () => {
-        setIngredients([...ingredients, newIngredient]);
-        setNewIngredient('');
-      };
+  const handleAddIngredient = () => {
+    setIngredients([...ingredients, newIngredient]);
+    setNewIngredient('');
+  };
 
-    // const handleSubmit = async() => {
-      
-    //   const formdata = new FormData ()
-    //   formdata.set("title", title)
-    //   formdata.set("category", category)
-    //   formdata.set("ingredients", ingredients)
-    //   formdata.set("instructions", instructions)
-    //   formdata.set("imageFile", imageFile.file, "filename")
-
-    //   const response = await axios.post('/recipies/add')
-    //   setFormSubmitted(true);
-    //   console.log(" response:", response);
-
-    // }
 
     const handleSubmit = async () => {
       const formData = new FormData();
@@ -132,7 +113,7 @@ export default function AddNewRecipes ( ) {
               <option value="Breakfast">Breakfast</option>
               <option value="Lunch">Lunch</option>
               <option value="Appetizer">Appetizer</option>
-              <option value="Dessert">Dessert</option>
+              <option value="Desserts">Desserts</option>
               <option value="Main Recipes">Main Recipes</option>
               <option value="Quick Recipes">Quick Recipes</option>
               <option value="Special Recipes">Special Recipes</option>
