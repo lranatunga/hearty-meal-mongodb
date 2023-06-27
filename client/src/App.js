@@ -12,7 +12,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await axios.get("http://localhost:5001/recipes/list");
-      console.log("🚀 ~ data:", data);
+      
+      console.log("data:", data);
 
       setUsers(data.data);
 
@@ -36,14 +37,15 @@ function App() {
             </li>
           ))}
         </ul>
-          {/* <p>{item.instructions}</p> */}
-          <ul >
+          <p>{item.instructions}</p>
+          {/* <ul >
           {item.instructions.map((instruction, index) => (
             <li key={index} style={{ listStyle: 'none' }}>
               {instruction}
             </li>
           ))}
-        </ul>
+        </ul> */}
+        <div><img src={`http://localhost:5001/uploads/${item.image}`} alt={item.title} /></div>
         </div>
 
       ))}

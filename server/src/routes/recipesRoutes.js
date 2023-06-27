@@ -11,8 +11,18 @@ const storage = multer.diskStorage({
           cb(null, "./server/uploads");
         },
         filename: function (req, file, cb) {
-          cb(null, file.originalname)
+          const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
       
+          let extension = "";
+      
+          // get the rest of string after 5th character
+          if (file.mimetype.includes("image"))
+            extension = "." + file.mimetype.slice(6);
+          console.log("extension:", extension);
+      
+          console.log("INSIDE STORAGE OBJECT: file=", file);
+      
+          cb(null, file.fieldname + "-" + uniqueSuffix + extension);
         },
       });
 
@@ -22,8 +32,8 @@ const router = express.Router()
 
 router.get('/list', handleListRecipes)
 router.get('/search', handleSearchRecipes)
-router.post('/add', upload.single('recipeImage'), handleAddRecipe)
-router.put('/edit', upload.single('recipeImage'),handleEditRecipe)
+router.post('/add', upload.single('image'), handleAddRecipe)
+router.put('/edit', upload.single('image'),handleEditRecipe)
 router.delete('/delete/:id', handeleDeleteRecipe)
 
 export default router

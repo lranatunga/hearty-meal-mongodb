@@ -10,28 +10,58 @@ export const handleListRecipes = async (req, res) => {
         console.log('Error list recipes:', error.message)
         res.send('Error in listing recipes' + error.message)
     }
+
 }
+
+
+
 
 export const handleAddRecipe = async (req, res) => {
-    console.log('handleAddRecipe:', req.body)
+  console.log("handleAddRecipe:", req.body);
 
-    try{
-        const { title, category, ingredients, instructions } = req.body;
-        const image = req.file.filename;
-        const addNewRecipe = await Recipe.create({
-            title,
-            category,
-            ingredients,
-            instructions,
-            image,
-        })
-        console.log("New Recipe add:", addNewRecipe)
-        res.send('New recipe add to the DB')
-    } catch (error) {
-        console.log('Error add recipes:', error.message)
-        res.send('Error in adding recipes' + error.message)
-    }
-}
+  try {
+    let { title, category, ingredients, instructions, image } = req.body;
+    image  = req.file.filename;
+
+    const addNewRecipe = await Recipe.create({
+      title,
+      category,
+      ingredients,
+      instructions,
+      image,
+    });
+
+    console.log("New Recipe added:", addNewRecipe);
+    res.send('New recipe added to the DB');
+  } catch (error) {
+    console.log("Error adding recipe:", error.message);
+    res.send('Error in adding recipe: ' + error.message);
+  }
+};
+
+ 
+  
+
+// export const handleAddRecipe = async (req, res) => {
+//     console.log('handleAddRecipe:', req.body)
+
+//     try{
+//         const { title, category, ingredients, instructions } = req.body;
+//         const image = req.file.filename;
+//         const addNewRecipe = await Recipe.create({
+//             title,
+//             category,
+//             ingredients,
+//             instructions,
+//             image,
+//         })
+//         console.log("New Recipe add:", addNewRecipe)
+//         res.send('New recipe add to the DB')
+//     } catch (error) {
+//         console.log('Error add recipes:', error.message)
+//         res.send('Error in adding recipes' + error.message)
+//     }
+// }
 
 // export const handleEditRecipe = async (req, res) => {
 //     console.log("handleEditRecipe:", req.body);
