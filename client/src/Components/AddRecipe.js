@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useGetUserID } from "../CustomHooks/useGetUserID";
 import { useCookies } from "react-cookie";
-import MainLayout from "../Layouts/MainLayout";
+import "../Styles/Pages.css"
 
 
 const AddNewRecipesByUser = () => {
@@ -72,46 +72,47 @@ const AddNewRecipesByUser = () => {
   };
 
   return (
-    <MainLayout>
     <div>
       <div className="AddNewRecipe">
         {!formSubmitted ? (
           <form onSubmit={handleSubmit}>
-            <label>Add your recipe title:</label>
+            <label style={{display:"flex", gap:"2rem", marginTop:"3rem"}}>Recipe Title:
             <input
               type="text"
               id="title"
-              placeholder="Title"
+              // placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
-            <label>Add your Ingredients:</label>
-            <div>
+            </label>
+            <label style={{display:"flex", gap:"2rem"}}>Ingredients:
+            
               <input
                 type="text"
                 id="ingredient"
                 value={newIngredient}
                 onChange={(e) => setNewIngredient(e.target.value)}
-                placeholder="Enter an ingredient"
+                // placeholder="Enter an ingredient"
               />
               <button type="button" onClick={handleAddIngredient}>
                 Add Ingredient
               </button>
-            </div>
+            </label>
             <ul>
               {ingredients.map((ingredient, index) => (
-                <li key={index}>{ingredient}</li>
+                <li key={index} className="dot-list">{ingredient}</li>
               ))}
             </ul>
-            <label>Add your Instructions:</label>
+            <label style={{display:"flex"}}>Instructions:
             <textarea
               type="text"
               id="instructions"
-              placeholder="Instructions"
+              // placeholder="Instructions"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
             />
-            <label>Category: </label>
+            </label>
+            <label>Category:
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -125,20 +126,25 @@ const AddNewRecipesByUser = () => {
               <option value="Quick Recipes">Quick Recipes</option>
               <option value="Special Recipes">Special Recipes</option>
             </select>
+            </label>
             <div>
-              <label>Add an image:</label>
+            <img
+                className="w-[300px] h-[300px] object-cover"
+                src={image.url || noimage}
+                alt=""
+              />
+              <label style={{display:"flex", gap:"3rem"}}>Add an image:
               <input
                 type="file"
                 accept="image/png, image/jpeg"
                 name="image"
                 onChange={handleImageChange}
               />
-              <img
-                className="w-[300px] h-[300px] object-cover"
-                src={image.url || noimage}
-                alt=""
-              />
+              </label>
+
+              
             </div>
+            
             <button type="submit">Submit</button>
           </form>
         ) : (
@@ -157,7 +163,6 @@ const AddNewRecipesByUser = () => {
         )}
       </div>
     </div>
-    </MainLayout>
   );
 };
 

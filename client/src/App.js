@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
     
       <SearchContextFunction>
-        <div className="App">
+        <div className="background-container">
           <AllRoutes/>
         </div>
       </SearchContextFunction>

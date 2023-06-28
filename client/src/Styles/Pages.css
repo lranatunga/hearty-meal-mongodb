@@ -1,0 +1,15 @@
+/*ADD NEW RECIPES PAGE | ROUTE: "/addnewrecipes/..."*/
+.AddNewRecipe {
+    background-color: whitesmoke;
+    width: 80vw;
+    height: 85vh;
+    margin: 4rem 10rem;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+}
+.AddNewRecipe > form {
+    margin: 3rem;
+    display: flex;
+    flex-direction: column;
+}
