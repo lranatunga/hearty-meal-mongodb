@@ -15,6 +15,7 @@ export default function AddNewRecipes ( ) {
     file: null,
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const navigate = useNavigate();
 
 
   const handleImageChange = (e) => {
@@ -60,6 +61,7 @@ export default function AddNewRecipes ( ) {
         });
         setFormSubmitted(true);
         console.log("Response:", response);
+        navigate('/user')
       } catch (error) {
         console.log("Error:", error);
       }

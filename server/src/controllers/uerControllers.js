@@ -82,7 +82,7 @@ export const handleUserLogin = async (req, res) => {
   
       const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
   
-      res.json({userID: user._id });
+      res.json({ token, userID: user._id });
       console.log('user login sucsessfull')
     } catch (error) {
       console.log("Error in user login: " + error.message);

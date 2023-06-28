@@ -14,11 +14,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useCookies } from "react-cookie";
 
 
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+
+  const [_, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +38,8 @@ export default function SignIn() {
         },
       });
       console.log(response.data);
+      setCookies("access_token", response.data.token);
+      window.localStorage.setItem("userID", response.data.userID);
       navigate('/user');
     } catch (error) {
       console.error(error);

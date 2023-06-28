@@ -11,7 +11,8 @@ import SearchPage from './Pages/SearchPage';
 import SingleRecipePage from './Pages/SingleRecipePage';
 import LoginPage from "./Pages/LoginPage"
 import UserRegister from './Pages/UserRegisterPage';
-import UserPage from './Pages/UserPage';
+import UserPage from './Pages/UserPage'
+import AddNewRecipesByUsers from './Pages/AddNewByUser';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -42,7 +43,7 @@ function App() {
       <Route path="/login" element={<LoginPage/>}/>
       <Route path="/user" element={<UserPage/>}/>
       <Route path= '/addnewrecipes' element = {<AddNewRecipes/>} />
-      
+      <Route path= '/addnewrecipesbyuser' element = {<AddNewRecipesByUsers/>} />
     </Routes>
     {/* <Appetizer/>
     <Dessert/>
