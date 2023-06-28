@@ -6,5 +6,5 @@ import {handleUserRegister,
 const router = express.Router()
 
 router.post('/register', handleUserRegister)
-router.post('/login', handleUserLogin)
+router.get('/login', handleUserLogin)
 export default router

@@ -3,10 +3,40 @@ import User from "../model/User.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
+const saltRounds = 10;
+
+// export const handleUserRegister = async (req, res) => {
+//   try {
+//     const { firstName, lastName, username, email, password } = req.body;
+//     // console.log("User details:", req.body)
+
+//     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+
+//     if (existingUser) {
+//       return res.status(400).json({ error: "Username or email already exists" });
+//     }
+
+//     const hashedPassword = await bcrypt.hash(password, 10);
+//     const newUser = new User({
+//       firstName,
+//       lastName,
+//       username,
+//       email,
+//       password: hashedPassword,
+//     });
+//     await newUser.save();
+//     // console.log("New User:", newUser)
+
+//     res.status(200).json({ message: "User registered successfully" });
+//   } catch (error) {
+//     console.log("Error in user register: " + error.message);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
+
 export const handleUserRegister = async (req, res) => {
   try {
     const { firstName, lastName, username, email, password } = req.body;
-    // console.log("User details:", req.body)
 
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
 
@@ -14,7 +44,8 @@ export const handleUserRegister = async (req, res) => {
       return res.status(400).json({ error: "Username or email already exists" });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, saltRounds);
+
     const newUser = new User({
       firstName,
       lastName,
@@ -22,8 +53,8 @@ export const handleUserRegister = async (req, res) => {
       email,
       password: hashedPassword,
     });
+
     await newUser.save();
-    // console.log("New User:", newUser)
 
     res.status(200).json({ message: "User registered successfully" });
   } catch (error) {
