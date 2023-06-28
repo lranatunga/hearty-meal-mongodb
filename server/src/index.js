@@ -14,5 +14,6 @@ app.use(express.urlencoded ({extended : false}))
 
 app.use('/recipes', recipesRoutes)
 app.use('/auth', userRoutes)
+app.use("/uploads", express.static("./server/uploads"));
 
 app.listen(5001, () => console.log('Server is up and running at port 5001'))
