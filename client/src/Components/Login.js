@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -19,25 +19,26 @@ import { useNavigate } from 'react-router-dom';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const User = {
-      username: formData.get("username"),
-      password: formData.get("password"),
+      username: formData.get('username'),
+      password: formData.get('password'),
     };
 
-  const response = await axios.get(
-      "http://localhost:5001/auth//login",
-      User,
-      {
-        Headers: {
-          "Content-type": "multipart/form-data; charset=UTF-8",
+    try {
+      const response = await axios.post('http://localhost:5001/auth/login', User, {
+        headers: {
+          'Content-Type': 'application/json',
         },
-      }
-    );
- navigate('/user')
+      });
+      console.log(response.data);
+      navigate('/user');
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -63,10 +64,9 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="userName"
+              id="username"
               label="User Name"
-              name="User Name"
-            //   autoComplete="email"
+              name="username"
               autoFocus
             />
             <TextField
@@ -77,18 +77,12 @@ export default function SignIn() {
               label="Password"
               type="password"
               id="password"
-            //   autoComplete="current-password"
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
             <Grid container>
@@ -105,7 +99,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
     </ThemeProvider>
   );
