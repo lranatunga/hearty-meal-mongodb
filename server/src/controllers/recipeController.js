@@ -14,6 +14,30 @@ export const handleListRecipes = async (req, res) => {
 
 }
 
+export const handleListRecipesByUsers =  async (req, res) => {
+  try {
+    console.log("🚀 ~ hello listByUser ");
+
+    const owner = req.query.userOwner
+    console.log("owner:", owner)
+    ;
+
+    if (!owner) return res.send({ success: false, error: "No user provided" });
+
+    const recipebyuser = await Recipebyuser.find({ userOwner: owner })
+      // .select("-__v")
+      // .populate({ path: "owner", select: "username email image" }); // post owner
+
+    res.send({ success: true, recipebyuser });
+  } catch (error) {
+    console.log("🚀 ~ listByUser ~ error", error.message);
+
+    res.send({ success: false, error: error.message });
+  }
+};
+
+
+
 
 
 

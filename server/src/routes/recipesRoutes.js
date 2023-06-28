@@ -4,6 +4,7 @@ import {handleListRecipes,
         handleEditRecipe,
         handeleDeleteRecipe,
         handleAddRecipeByUser,
+        handleListRecipesByUsers,
         handleSearchRecipes} from '../controllers/recipeController.js'
 import multer from "multer";
 
@@ -32,6 +33,7 @@ const upload = multer({ storage: storage });
 const router = express.Router()
 
 router.get('/list', handleListRecipes)
+router.get('/listrecipesbyowner', handleListRecipesByUsers)
 router.get('/search', handleSearchRecipes)
 router.post('/add', upload.single('image'), handleAddRecipe)
 router.post('/addbyuser', upload.single('image'), handleAddRecipeByUser)

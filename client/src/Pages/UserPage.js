@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import ListByUser from "../Components/ListUserRecipe"
 
 export default function UserPage () {
     const navigate = useNavigate()
@@ -8,6 +9,7 @@ export default function UserPage () {
     return (
         <div>
         <button onClick={handleCreateRecipe}>Create new recipe</button>
+        <ListByUser/>
         </div>
     )
 }
