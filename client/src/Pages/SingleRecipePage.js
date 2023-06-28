@@ -6,14 +6,16 @@ import useFetchData from "../CustomHooks/useFetchData";
 // import '../Styles/page.css';
 
 export default function SingleRecipePage() {
-  const { _id } = useParams();
+  const { id } = useParams();
   const { data } = useFetchData("http://localhost:5001/recipes/list");
 
   if (!data) {
     return <Spinner />;
   }
 
-  const selectedRecipe = data.find((item) => item.id === _id);
+  const selectedRecipe = data.find((item) => item._id === id);
+  console.log("selected recipe:", selectedRecipe)
+  
 
   if (!selectedRecipe) {
     return <div>Recipe not found</div>;
@@ -30,13 +32,13 @@ export default function SingleRecipePage() {
           ingredients={ingredients}
           instructions={instructions}
         />
-        <Link to="/recipe">
+        <Link to="/">
           <button style={{
                         fontSize:'1.5rem', 
                         backgroundColor:'#D4C79E', 
                         marginLeft:'5rem', 
                         padding:'0.8rem',
-                        borderRadius:'0.5rem'}}>Back to Recipes</button>
+                        borderRadius:'0.5rem'}}>Back to Home</button>
         </Link>
       </div>
   )

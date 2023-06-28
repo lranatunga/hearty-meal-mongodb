@@ -1,17 +1,18 @@
 import useFetchData from "../CustomHooks/useFetchData";
 import SummaryCard from "../Components/SummaryCard";
 import Spinner from "../Components/Spinner";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./category.css";
 
 
 export default function Dessert() {
     const { data } = useFetchData("http://localhost:5001/recipes/list" );
-    console.log("datafetched",data)
-    // const navigate = useNavigate();
+    // console.log("datafetched",data)
+    const navigate = useNavigate();
   
-    const handleReadMore = (id) => {
-    //   navigate(`/singlerecipepage/${id}`);
+    const handleReadMore = (_id) => {
+        console.log("_id", _id)
+      navigate(`/singlerecipepage/${_id}`);
     };
   
     if (!data) {
@@ -21,17 +22,18 @@ export default function Dessert() {
     const dessertCard = data.filter(
       (item) => item.category.toLowerCase() === "desserts"
     );
+    console.log(dessertCard)
   
     return (
       <div className="category-group">
         {dessertCard.map((item) => {
-          const { id, image, title } = item;
+          const { _id, image, title } = item;
           return (
             <SummaryCard
-              key={id}
+              key={_id}
               title={title}
               image={image}
-              onHandleClick={() => handleReadMore(id)}
+              onHandleClick={() => handleReadMore(_id)}
             />
           );
         })}

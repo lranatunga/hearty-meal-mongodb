@@ -5,12 +5,11 @@ import SearchContextFunction from './Context/SearchContext';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AddNewRecipes from './Pages/AddNewRecipePage';
-import Appetizer from './Category/Appetizer';
-import Dessert from './Category/Dessert';
-import MainRecipes from './Category/MainRecipes';
-import QuickRecipes from './Category/QuickRecipes';
-import SpecialRecipes from './Category/Special';
+import RecipeTabs from './Components/RecipeTabs';
+import Home from './Pages/Home';
+import SearchPage from './Pages/SearchPage';
 import SingleRecipePage from './Pages/SingleRecipePage';
+import LoginPage from "./Pages/Login"
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -32,35 +31,23 @@ function App() {
     <BrowserRouter>
     <div className="App">
     <SearchContextFunction>
-    <Appetizer/>
+    <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/search" element={<SearchPage/>}/>
+      <Route path="/singlerecipepage/:id" element={<SingleRecipePage/>} />
+      <Route path="/login" element={<LoginPage/>}/>
+      <Route path= '/addnewrecipes' element = {<AddNewRecipes/>} />
+      
+    </Routes>
+    {/* <Appetizer/>
     <Dessert/>
     <MainRecipes/>
     <QuickRecipes/>
     <SpecialRecipes/>
-    <SingleRecipePage/>
-      <AddNewRecipes/>
-      {users.map((item, idx) => (
-        <div key={idx} >
-          <p>{item.title}</p>
-          <ul>
-          {item.ingredients.map((ingredient, index) => (
-            <li key={index} style={{ listStyle: 'none' }}>
-              {ingredient}
-            </li>
-          ))}
-        </ul>
-          <p>{item.instructions}</p>
-          {/* <ul >
-          {item.instructions.map((instruction, index) => (
-            <li key={index} style={{ listStyle: 'none' }}>
-              {instruction}
-            </li>
-          ))}
-        </ul> */}
-        <div><img src={`http://localhost:5001/uploads/${item.image}`} alt={item.title} /></div>
-        </div>
-
-      ))}
+    <SingleRecipePage/> */}
+    {/* <RecipeTabs/>
+      <AddNewRecipes/> */}
+     
     </SearchContextFunction>
     </div>
     </BrowserRouter>
