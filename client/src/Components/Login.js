@@ -1,41 +1,105 @@
-import { Routes, Route, Link } from "react-router-dom";
-import '../Styles/component.css';
-import { useState } from "react";
-import UserPage from "../Pages/UserPage";
-import { auth, provider } from "../firebase-config";
 
-import { useNavigate } from "react-router-dom";
-import AddNewRecipePage from "../Pages/AddNewRecipePage";
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export default function Login () {
-    const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
-    const signUserOut = () => {
-        signOut(auth).then(() => {
-          localStorage.clear();
-          setIsAuth(false);
-          window.location.pathname = "/home";
-        });
-      };
 
-    return(
-        <>
-            
-            {!isAuth ? (
-            <button className="login-button" onClick={signInWithGoogle}>Login</button>
-//<Link to="/login" id="login-button"> Login </Link>
-            ) : (
-            <>
-                <Link to="/addnewrecipes"><button className="user-button">Add new recipe</button></Link>
-                <Link to="/user"><button className="user-button">My kitchen</button></Link>
-                <button onClick={signUserOut} className="login-button"> Log Out</button>
-            </>
-            )}
-            <Routes>
-                
-                <Route path="/user" element={<UserPage isAuth={isAuth} />} />
-                <Route path="/addnewrecipes" element={<AddNewRecipePage isAuth={isAuth} />} />
-                <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-            </Routes>
-        </>
-    )
+const defaultTheme = createTheme();
+
+export default function SignIn() {
+  const navigate = useNavigate();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const User = {
+      username: formData.get('username'),
+      password: formData.get('password'),
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5001/auth/login', User, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      console.log(response.data);
+      navigate('/user');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="User Name"
+              name="username"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" color="primary" />}
+              label="Remember me"
+            />
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Sign In
+            </Button>
+            <Grid container>
+              {/* <Grid item xs>
+                <Link href="#" variant="body2">
+                  Forgot password?
+                </Link>
+              </Grid> */}
+              <Grid item>
+                <Link href="/register" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
+  );
 }

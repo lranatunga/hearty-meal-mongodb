@@ -9,7 +9,9 @@ import RecipeTabs from './Components/RecipeTabs';
 import Home from './Pages/Home';
 import SearchPage from './Pages/SearchPage';
 import SingleRecipePage from './Pages/SingleRecipePage';
-import LoginPage from "./Pages/Login"
+import LoginPage from "./Pages/LoginPage"
+import UserRegister from './Pages/UserRegisterPage';
+import UserPage from './Pages/UserPage';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -33,9 +35,12 @@ function App() {
     <SearchContextFunction>
     <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path= '/register' element={<UserRegister/>}/>
+      <Route path= '/login' element={<LoginPage/>}/>
       <Route path="/search" element={<SearchPage/>}/>
       <Route path="/singlerecipepage/:id" element={<SingleRecipePage/>} />
       <Route path="/login" element={<LoginPage/>}/>
+      <Route path="/user" element={<UserPage/>}/>
       <Route path= '/addnewrecipes' element = {<AddNewRecipes/>} />
       
     </Routes>
