@@ -1,7 +1,10 @@
 import AddNewRecipesByUser from "../Components/AddRecipe";
+import MainLayout from "../Layouts/MainLayout";
 
 export default function AddNewRecipesByUsers () {
     return(
-        <div><AddNewRecipesByUser/></div>
+        <MainLayout>
+            <div><AddNewRecipesByUser/></div>
+        </MainLayout>
     )
 }

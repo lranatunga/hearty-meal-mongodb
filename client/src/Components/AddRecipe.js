@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useGetUserID } from "../CustomHooks/useGetUserID";
 import { useCookies } from "react-cookie";
+import MainLayout from "../Layouts/MainLayout";
 
 
 const AddNewRecipesByUser = () => {
@@ -71,6 +72,7 @@ const AddNewRecipesByUser = () => {
   };
 
   return (
+    <MainLayout>
     <div>
       <div className="AddNewRecipe">
         {!formSubmitted ? (
@@ -155,6 +157,7 @@ const AddNewRecipesByUser = () => {
         )}
       </div>
     </div>
+    </MainLayout>
   );
 };
 

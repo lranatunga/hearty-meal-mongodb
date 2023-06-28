@@ -20,6 +20,10 @@ export const Navbar = () => {
     navigate("/");
   };
 
+  const profile = () => {
+    navigate("/user");
+  };
+
   return (
     <div className="navbar">
       <Link to="/">Home</Link>
@@ -30,7 +34,10 @@ export const Navbar = () => {
           <button onClick={handleClickSingIn}>Sign In</button>
         </div>
       ) : (
+        <div>
         <button onClick={logout}>Logout</button>
+        <button onClick={profile}>Profile</button>
+        </div>
       )}
     </div>
   );

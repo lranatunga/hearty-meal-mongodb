@@ -2,6 +2,7 @@ import { useState } from "react";
 import noimage from "../images/noimage.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import MainLayout from "../Layouts/MainLayout";
 
 export default function AddNewRecipes ( ) {
 
@@ -69,6 +70,7 @@ export default function AddNewRecipes ( ) {
     
 
     return(
+      <MainLayout>
         <div>
         
       <div className='AddNewRecipe'>
@@ -153,5 +155,6 @@ export default function AddNewRecipes ( ) {
 
 
         </div>
+        </MainLayout>
     )
 }

@@ -1,22 +1,12 @@
-
-// import '../Styles/layout.css';
-import Sidebar from "./Sidebar";
-import Login from "../Components/Login";
-import SearchBar from "../Components/SearchBar";
+import Navbar from "../Components/NavBar"
 
 export default function MainLayout({children}) {
     return(
         <div className="main">
-            <div className="left"><Sidebar/></div>
+             <Navbar/>
             
-            <div className="side">
-                <div className="heading">
-                    <div><SearchBar/></div>
-                    <div className="top"><Login/></div>
-                    
-                </div>
-                <div className="content">{children}</div>
-            </div>            
-        </div>
+            <div className="content">{children}</div>
+        </div>            
+        
     )
 }
