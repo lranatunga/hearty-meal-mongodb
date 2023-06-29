@@ -9,7 +9,7 @@ import '../Styles/Pages.css';
 
 export default function UserSingleRecipePage() {
   const { id } = useParams();
-  console.log(id)
+  console.log("recipe id:",id)
   const navigate = useNavigate();
   const { data } = useFetchData(`http://localhost:5001/recipes/listonerecipesbyowner?id=${id}`);
   console.log("user single data:", data)
@@ -38,15 +38,12 @@ export default function UserSingleRecipePage() {
    
   }
 
-  const handeleEditeRecipe = async () => {
-    try {
-        await axios.delete(`http://localhost:5001/recipes/delete/${id}`);
-        navigate ('/editrecipes')
-      } catch (error) {
-        console.error("Error deleting recipe:", error.message);
-      }
-    
 
+
+
+  const handeleEditeRecipe =  () => {
+    console.log("edit id user page:", id)
+    navigate(`/editrecipes/${id}`)
   }
 
   return (

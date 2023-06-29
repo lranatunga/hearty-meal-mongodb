@@ -14,9 +14,12 @@ export default function UserPage () {
         <MainLayout>
         <div className="user-page">
         <button className="user-button" onClick={handleCreateRecipe}>Create new recipe</button>
-        <div className="user-collection" style={{display:"flex", flexWrap:"wrap", backgroundColor:"#D4C79E", width:"60%", margin:"6rem"}}>
+        <div className="user-collection" style={{display:"flex", flexWrap:"wrap", backgroundColor:"#D4C79E", width:"60%", margin:"6rem", height:'50vh', borderRadius:"1rem"}}>
+            <div>
             <ListByUser userID={userID} />
         </div>
+            </div>
+            
         </div>
         </MainLayout>
     )
