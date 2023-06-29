@@ -12,8 +12,8 @@ export default function UserPage () {
     }
     return (
         <MainLayout>
-        <div>
-        <button className="login-button" onClick={handleCreateRecipe}>Create new recipe</button>
+        <div className="user-page">
+        <button className="user-button" onClick={handleCreateRecipe}>Create new recipe</button>
         <ListByUser userID={userID}/>
         </div>
         </MainLayout>

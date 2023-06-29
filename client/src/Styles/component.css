@@ -263,7 +263,7 @@ nav a.active {
 
 /*RECIPE TABS COMPONENTS*/
 .recipe-tab {
-    width: 60rem;
+    width: 70rem;
     height: fit-content;
     background-color: var(--sweet-like-vanilla);
     margin-right: 3rem;
@@ -273,11 +273,12 @@ nav a.active {
     border: 3px solid #353535;
     border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
     letter-spacing: 0.3ch;
-    position: relative;
     -webkit-box-shadow: 1px 1px 20px 0 #6e6e6e;
     -moz-box-shadow: 1px 1px 20px 0 #6e6e6e;
     box-shadow: 1px 1px 20px 0 #6e6e6e;
     padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
     
     
  
@@ -316,7 +317,8 @@ nav a.active {
     background-color: whitesmoke;
     margin-right: 0.5rem;
     border-radius: 0.5rem;
-    padding: 0.5rem 0 
+    padding: 0.5rem 0;
+    width:15rem;
 }
 #category-img {
     width: 100%;
@@ -334,15 +336,10 @@ nav a.active {
 .category-items > p {
     height: 2rem;
 }
-.category-items > button {
-    padding: 0.3rem;
-    font-size: 0.8rem;
-    background-color: var(--dark-is-coffee);
-    color: whitesmoke;
-    border-radius: 5px;
-}
+
 
 .category-items > button {
+    margin-top: 25px;
     padding: 0.3rem;
     font-size: 0.8rem;
     background-color: var(--dark-is-coffee);
@@ -360,6 +357,7 @@ nav a.active {
 .item-card {
     background-color: #D4C79E;
     border-radius: 1rem;
+    width:70vw;
 }
 .item-card > h1 {
     margin-bottom: 2rem;

@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import useFetchData from "../CustomHooks/useFetchData";
 import MainLayout from "../Layouts/MainLayout";
-// import '../Styles/page.css';
+import '../Styles/Pages.css';
 
 export default function SingleRecipePage() {
   const { id } = useParams();

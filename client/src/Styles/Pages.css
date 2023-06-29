@@ -13,3 +13,38 @@
     display: flex;
     flex-direction: column;
 }
+
+.log-in{
+    background-color: whitesmoke;
+    width: 80%;
+    height: 60vh;
+    margin: 8rem;
+    margin-left: 8rem;
+    border-radius: 1rem;
+    display: flex;
+
+}
+
+.register-page{
+    background-color: whitesmoke;
+    width: 80%;
+    height:80vh;
+    margin: 8rem;
+    margin-left: 8rem;
+    border-radius: 1rem;
+    display: flex;
+
+}
+
+.home-page{
+    display: flex;
+    justify-content: center;
+    margin: 6rem;
+}
+
+.single-page{
+    display: flex;
+    flex-direction: column;
+    gap:2rem;
+    align-items: center;
+}

@@ -31,12 +31,12 @@ export const Navbar = () => {
 
   return (
     <div className="navbar">
-      <button className="user-button" onClick={handleClickHome}>Home</button>
+      <button className="login-button" onClick={handleClickHome}>Home</button>
       <SearchBar/>
       {!cookies.access_token ? (
         <div>
-          <button className="login-button" onClick={handleClickSignup}>Sign up</button>
-          <button  className="user-button" onClick={handleClickSingIn}>Sign In</button>
+          <button className="user-button" onClick={handleClickSignup}>Sign up</button>
+          <button  className="login-button" onClick={handleClickSingIn}>Sign In</button>
         </div>
       ) : (
         <div>
