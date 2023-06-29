@@ -7,6 +7,7 @@ import LoginPage from "./Pages/LoginPage"
 import UserRegister from './Pages/UserRegisterPage';
 import UserPage from './Pages/UserPage'
 import AddNewRecipesByUsers from './Pages/AddNewByUser';
+import UserSingleRecipePage from "./Pages/UserSingleRecipe";
 
 export default function AllRoutes () {
     return(
@@ -20,6 +21,7 @@ export default function AllRoutes () {
         <Route path="/user" element={<UserPage/>}/>
         <Route path= '/addnewrecipes' element = {<AddNewRecipes/>} />
         <Route path= '/addnewrecipesbyuser' element = {<AddNewRecipesByUsers/>} />
+        <Route path="/usersinglerecipepage/:id" element={<UserSingleRecipePage/>} />
       </Routes>
     )
 }
