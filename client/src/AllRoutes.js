@@ -23,7 +23,7 @@ export default function AllRoutes () {
         <Route path= '/addnewrecipes' element = {<AddNewRecipes/>} />
         <Route path= '/addnewrecipesbyuser' element = {<AddNewRecipesByUsers/>} />
         <Route path="/usersinglerecipepage/:id" element={<UserSingleRecipePage/>} />
-        <Route path="/editrecipes" element={<EditRecipes/>}/>
+        <Route path="/editrecipes/:id" element={<EditRecipes/>}/>
       </Routes>
     )
 }

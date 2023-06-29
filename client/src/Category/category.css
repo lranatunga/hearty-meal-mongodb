@@ -9,7 +9,10 @@
 
 
 .dot-list{
+    display: flex;
     list-style: none;
+    font-size: 1.2rem;
+    gap:1rem;
 }
 
 .dot-list::before{
@@ -25,4 +28,5 @@
 .dot-list span{
     margin-left:10px;
     font-size: 1.3rem;
+    
 }

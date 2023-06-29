@@ -116,8 +116,10 @@ export const handleAddRecipe = async (req, res) => {
 
 
 export const handleEditRecipe = async (req, res) => {
+  const { id } = req.query;
     try {
-      const { _id, title, category, ingredients, instructions } = req.body;
+      const { title, category, ingredients, instructions } = req.body;
+      console.log("edit id:", id)
       let image = req.body.image;
   
       
@@ -126,7 +128,7 @@ export const handleEditRecipe = async (req, res) => {
       }
   
       const updatedRecipe = await Recipebyuser.findByIdAndUpdate(
-        _id,
+        id,
         {
           title,
           category,
