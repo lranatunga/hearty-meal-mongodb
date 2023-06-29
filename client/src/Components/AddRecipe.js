@@ -100,7 +100,7 @@ const AddNewRecipesByUser = () => {
                 Add Ingredient
               </button>
             </label>
-            <ul>
+            <ul style={{display:"flex", flexDirection:"column", alignSelf:"center", gap:"2rem", marginTop:"1rem",fontSize:"1.2rem"}}>
               {ingredients.map((ingredient, index) => (
                 <li key={index} className="dot-list">{ingredient}</li>
               ))}
