@@ -29,7 +29,7 @@ export default function ItemCard(props) {
           </p>
           <ul>
             {ingredients.map((ingredient, index) => (
-              <li key={index} style={{ listStyle: 'none' }}>
+              <li key={index} className="dot-list">
                 {ingredient}
               </li>
             ))}

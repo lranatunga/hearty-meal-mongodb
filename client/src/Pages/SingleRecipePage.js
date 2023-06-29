@@ -3,7 +3,8 @@ import ItemCard from "../Components/ItemCard";
 import { Link, useParams } from "react-router-dom";
 import Spinner from "../Components/Spinner";
 import useFetchData from "../CustomHooks/useFetchData";
-// import '../Styles/page.css';
+import MainLayout from "../Layouts/MainLayout";
+import '../Styles/Pages.css';
 
 export default function SingleRecipePage() {
   const { id } = useParams();
@@ -24,7 +25,7 @@ export default function SingleRecipePage() {
   const { image, ingredients, instructions, title } = selectedRecipe;
 
   return (
-    
+      <MainLayout>
       <div className="single-page">
         <ItemCard
           title={title}
@@ -41,5 +42,6 @@ export default function SingleRecipePage() {
                         borderRadius:'0.5rem'}}>Back to Home</button>
         </Link>
       </div>
+      </MainLayout>
   )
 }

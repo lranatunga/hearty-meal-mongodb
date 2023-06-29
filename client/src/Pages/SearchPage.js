@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import ItemCard from '../Components/ItemCard';
 import { useLocation } from 'react-router-dom';
 import useFetchData from '../CustomHooks/useFetchData';
+import MainLayout from '../Layouts/MainLayout';
 
 export default function SearchPage() {
     const location = useLocation();
@@ -23,6 +24,7 @@ export default function SearchPage() {
     console.log('search results:', searchResults);
   
     return (
+      <MainLayout>
       <div>
         <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '8rem', marginRight: '3rem', gap: '4rem' }}>
           {searchResults.map((item) => (
@@ -36,6 +38,7 @@ export default function SearchPage() {
           ))}
         </div>
       </div>
+      </MainLayout>
     );
   }
   

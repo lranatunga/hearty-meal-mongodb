@@ -1,8 +1,11 @@
 import SingUp from "../Components/UserRegister"
+import "../Styles/Pages.css"
 
 export default function UserRegister () {
 
     return(
-        <SingUp/>
+        <div className="register-page">
+            <SingUp/>
+        </div>
     )
 }
