@@ -16,7 +16,7 @@ export const handleListRecipes = async (req, res) => {
 
 export const handleListRecipesByUsers =  async (req, res) => {
   try {
-    console.log("🚀 ~ hello listByUser ");
+    console.log("hello listByUser ");
 
     const owner = req.query.userOwner
     console.log("owner:", owner)
@@ -30,7 +30,28 @@ export const handleListRecipesByUsers =  async (req, res) => {
 
     res.send({ success: true, recipebyuser });
   } catch (error) {
-    console.log("🚀 ~ listByUser ~ error", error.message);
+    console.log("listByUser ~ error", error.message);
+
+    res.send({ success: false, error: error.message });
+  }
+};
+
+
+export const handleListOneRecipesByUsers = async (req, res) => {
+  try {
+    console.log("hello listOneby user ");
+
+    const id = req.query.id;
+
+    if (!id) return res.send({ success: false, error: "No tweet id provided" });
+
+    const ListOneRecipesByUsers = await Recipebyuser.findById(id)
+      .select("-__v")
+      // .populate({ path: "owner", select: "username email image" }); // post owner
+
+    res.send({ success: true, ListOneRecipesByUsers });
+  } catch (error) {
+    console.log("ListOneRecipesByUsers ~ error", error.message);
 
     res.send({ success: false, error: error.message });
   }
@@ -104,7 +125,7 @@ export const handleEditRecipe = async (req, res) => {
         image = req.file.filename; 
       }
   
-      const updatedRecipe = await Recipe.findByIdAndUpdate(
+      const updatedRecipe = await Recipebyuser.findByIdAndUpdate(
         _id,
         {
           title,
@@ -130,7 +151,7 @@ export const handeleDeleteRecipe = async (req, res) => {
     console.log("Delete recipe:", req.params)
 
     try{
-        const deleteRecipe = await Recipe.findByIdAndDelete(req.params.id)
+        const deleteRecipe = await Recipebyuser.findByIdAndDelete(req.params.id)
         console.log('Delete recipe:', deleteRecipe)
         res.send("Recipe deleted from the DB")
     } catch (error) {

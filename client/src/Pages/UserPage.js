@@ -14,7 +14,9 @@ export default function UserPage () {
         <MainLayout>
         <div className="user-page">
         <button className="user-button" onClick={handleCreateRecipe}>Create new recipe</button>
-        <ListByUser userID={userID}/>
+        <div className="user-collection" style={{display:"flex", flexWrap:"wrap", backgroundColor:"#D4C79E", width:"60%", margin:"6rem"}}>
+            <ListByUser userID={userID} />
+        </div>
         </div>
         </MainLayout>
     )

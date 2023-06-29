@@ -40,7 +40,7 @@ export default function SignUp() {
         User,
         {
           Headers: {
-            "Content-type": "multipart/form-data; charset=UTF-8",
+            "Content-type": 'application/json',
           },
         }
       );
