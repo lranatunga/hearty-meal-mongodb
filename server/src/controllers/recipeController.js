@@ -125,7 +125,7 @@ export const handleEditRecipe = async (req, res) => {
         image = req.file.filename; 
       }
   
-      const updatedRecipe = await Recipe.findByIdAndUpdate(
+      const updatedRecipe = await Recipebyuser.findByIdAndUpdate(
         _id,
         {
           title,
@@ -151,7 +151,7 @@ export const handeleDeleteRecipe = async (req, res) => {
     console.log("Delete recipe:", req.params)
 
     try{
-        const deleteRecipe = await Recipe.findByIdAndDelete(req.params.id)
+        const deleteRecipe = await Recipebyuser.findByIdAndDelete(req.params.id)
         console.log('Delete recipe:', deleteRecipe)
         res.send("Recipe deleted from the DB")
     } catch (error) {

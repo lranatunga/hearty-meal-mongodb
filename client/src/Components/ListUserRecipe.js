@@ -62,7 +62,7 @@ export default function ListByUser({ userID }) {
   const dataByUser = data.recipebyuser;
 
   return (
-    <div className="category-group">
+    <div className="category-group" style={{margin:"2rem"}}>
       {dataByUser.map((item) => {
         const { _id, image, title } = item;
         return (
