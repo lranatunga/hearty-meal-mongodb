@@ -29,6 +29,7 @@ export default function EditRecipes() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
   
+  // Move imagePath variable outside useEffect
   const imagePath = `http://localhost:5001/uploads/${image}`;
   console.log("image path:", imagePath)
 
@@ -40,6 +41,7 @@ export default function EditRecipes() {
       setInstructions(instructions);
       setCategory(category);
       setImage({ url: "", file: null });
+      // Set the image URL if an image exists
       if (image) {
         setImage((prevImage) => ({
           ...prevImage,
@@ -49,13 +51,7 @@ export default function EditRecipes() {
     }
   }, [data]);
 
-  const handleDeleteIngredient = (index) => {
-    setIngredients((prevIngredients) => {
-      const updatedIngredients = [...prevIngredients];
-      updatedIngredients.splice(index, 1);
-      return updatedIngredients;
-    });
-  };
+ 
 
   const handleImageChange = (e) => {
     if (!e.currentTarget.files[0]) return;
@@ -77,31 +73,40 @@ export default function EditRecipes() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const formData = new FormData();
-    formData.set("title", title);
-    formData.set("category", category);
-    ingredients.set((ingredient, index) => {
-      formData.set(`ingredients[${index}]`, ingredient);
+    formData.append("title", title);
+    formData.append("category", category);
+    ingredients.forEach((ingredient, index) => {
+      formData.append(`ingredients[${index}]`, ingredient);
     });
-    formData.set("instructions", instructions);
-    formData.set("image", image.file, "filename");
-    formData.set("userOwner", userID);
-
+    formData.append("instructions", instructions);
+    formData.append("image", image.file);
+    formData.append("userOwner", userID);
+  
     try {
-      const response = await axios.put("/recipes/edit", formData, {
+      const response = await axios.put(`/recipes/edit?id=${id}`, formData, {
         headers: {
-          "Content-type": "multipart/form-data; charset=UTF-8;  authorization: cookies.access_token",
+            "Content-type": "multipart/form-data; charset=UTF-8",  authorization: cookies.access_token,
         },
       });
-
+  
       setFormSubmitted(true);
       console.log("Response:", response);
-      navigate("/user");
+    //   navigate("/user");
     } catch (error) {
       console.log("Error:", error);
     }
   };
+
+  const handleDeleteIngredient = (index) => {
+    setIngredients((prevIngredients) => {
+      const updatedIngredients = [...prevIngredients];
+      updatedIngredients.splice(index, 1);
+      return updatedIngredients;
+    });
+  };
+  
 
   return (
     <MainLayout>
