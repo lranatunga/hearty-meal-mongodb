@@ -29,7 +29,7 @@ export default function EditRecipes() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   const navigate = useNavigate();
   
-  // Move imagePath variable outside useEffect
+  
   const imagePath = `http://localhost:5001/uploads/${image}`;
   console.log("image path:", imagePath)
 
@@ -41,7 +41,7 @@ export default function EditRecipes() {
       setInstructions(instructions);
       setCategory(category);
       setImage({ url: "", file: null });
-      // Set the image URL if an image exists
+   
       if (image) {
         setImage((prevImage) => ({
           ...prevImage,
@@ -73,7 +73,7 @@ export default function EditRecipes() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("category", category);
@@ -191,7 +191,7 @@ export default function EditRecipes() {
                   alignContent: "center",
                 }}
               >
-                Recipe submitted successfully!
+                Recipe Updated Successfully!
               </div>
             )}
           </div>

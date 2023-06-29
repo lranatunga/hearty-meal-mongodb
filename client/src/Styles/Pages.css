@@ -1,8 +1,8 @@
 /*ADD NEW RECIPES PAGE | ROUTE: "/addnewrecipes/..."*/
 .AddNewRecipe {
     background-color: whitesmoke;
-    width: 80vw;
-    height: 85vh;
+    width: 70vw;
+    height: fit-content;
     margin: 4rem 10rem;
     border-radius: 1rem;
     display: flex;

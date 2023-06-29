@@ -65,7 +65,7 @@ const AddNewRecipesByUser = () => {
 
       setFormSubmitted(true);
       console.log("Response:", response);
-      navigate("/user");
+      // navigate("/user");
     } catch (error) {
       console.log("Error:", error);
     }
@@ -76,25 +76,27 @@ const AddNewRecipesByUser = () => {
       <div className="AddNewRecipe">
         {!formSubmitted ? (
           <form onSubmit={handleSubmit}>
-            <label style={{display:"flex", gap:"2rem", marginTop:"3rem"}}>Recipe Title:
+            <label style={{display:"flex", gap:"2rem", marginTop:"1rem",fontSize:"1.2rem" }}>Recipe Title:
             <input
               type="text"
               id="title"
               // placeholder="Title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              style={{height:"3rem", width:"40rem"}}
             />
             </label>
-            <label style={{display:"flex", gap:"2rem"}}>Ingredients:
+            <label style={{display:"flex", gap:"2rem", marginTop:"1rem",fontSize:"1.2rem"}}>Ingredients:
             
               <input
                 type="text"
                 id="ingredient"
                 value={newIngredient}
                 onChange={(e) => setNewIngredient(e.target.value)}
+                style={{height:"3rem", width:"40rem"}}
                 // placeholder="Enter an ingredient"
               />
-              <button type="button" onClick={handleAddIngredient}>
+              <button type="button" onClick={handleAddIngredient} style={{backgroundColor:"#D6570F", color:"white", }}>
                 Add Ingredient
               </button>
             </label>
@@ -103,16 +105,17 @@ const AddNewRecipesByUser = () => {
                 <li key={index} className="dot-list">{ingredient}</li>
               ))}
             </ul>
-            <label style={{display:"flex"}}>Instructions:
+            <label style={{display:"flex", gap:"2rem", marginTop:"2rem",fontSize:"1.2rem"}}>Instructions:
             <textarea
               type="text"
               id="instructions"
               // placeholder="Instructions"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
+              style={{width:"40rem", height:"40rem"}}
             />
             </label>
-            <label>Category:
+            <label style={{display:"flex", gap:"2rem", marginTop:"2rem",fontSize:"1.2rem"}}>Category:
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -128,24 +131,26 @@ const AddNewRecipesByUser = () => {
             </select>
             </label>
             <div>
-            <img
+            <img style={{marginTop:"2rem", width:"30rem", height:"30rem"}}
                 className="w-[300px] h-[300px] object-cover"
                 src={image.url || noimage}
                 alt=""
               />
-              <label style={{display:"flex", gap:"3rem"}}>Add an image:
+              <label style={{display:"flex", gap:"2rem", marginTop:"2rem",fontSize:"1.5rem"}}>Add an image:
               <input
                 type="file"
                 accept="image/png, image/jpeg"
                 name="image"
                 onChange={handleImageChange}
+                style={{marginTop:"2rem", width:"20rem", height:"8rem"}}
               />
               </label>
 
               
+            </div >
+            <div style={{display:"flex", alignSelf:"center"}}>
+            <button type="submit"style={{marginTop:"2rem",fontSize:"1.5rem", width:"8rem", backgroundColor:"#38AA5E"}}>Submit</button>
             </div>
-            
-            <button type="submit">Submit</button>
           </form>
         ) : (
           <div
@@ -154,11 +159,11 @@ const AddNewRecipesByUser = () => {
               fontSize: "3rem",
               display: "flex",
               justifyContent: "center",
-              marginTop: "48%",
+              marginTop: "30%",
               alignContent: "center",
             }}
           >
-            Recipe submitted successfully!
+            Recipe Added Successfully!
           </div>
         )}
       </div>
